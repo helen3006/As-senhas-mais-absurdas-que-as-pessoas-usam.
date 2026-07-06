@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senhas Absurdas & Segurança Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="progress-bar"></div>
+
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p>Carregando banco de dados de segurança...</p>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">🔒 <span>SafePass</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#ranking">Ranking</a></li>
+                    <li><a href="#simulador">Simulador</a></li>
+                    <li><a href="#gerador">Gerador</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                    <li><a href="#timeline">Evolução</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" aria-label="Alternar tema">🌙</button>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1 id="typing-text"></h1>
+                <p>Descubra os maiores erros da segurança digital e aprenda a se proteger de forma divertida e interativa.</p>
+                <a href="#ranking" class="btn btn-primary scroll-btn">Explorar Ranking ↓</a>
+            </div>
+            <div class="hero-illustration">
+                <div class="padlock-css">
+                    <div class="shackle"></div>
+                    <div class="body-lock">❌</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ranking" class="section-padding reveal">
+            <h2 class="section-title">O Ranking da Vergonha</h2>
+            <p class="section-subtitle">As senhas mais utilizadas no mundo que podem ser quebradas em menos de um segundo.</p>
+            
+            <div class="filter-container">
+                <input type="text" id="search-input" placeholder="Busque por uma senha comum...">
+                <div class="filter-buttons">
+                    <button class="btn-filter active" data-filter="all">Todas</button>
+                    <button class="btn-filter" data-filter="critico">Risco Crítico</button>
+                    <button class="btn-filter" data-filter="alto">Risco Alto</button>
+                </div>
+            </div>
+
+            <div class="grid-container" id="ranking-grid">
+                </div>
+        </section>
+
+        <section id="perigos" class="section-padding reveal">
+            <h2 class="section-title">Anatomia do Perigo</h2>
+            <div class="grid-container column-3">
+                <article class="info-card">
+                    <div class="card-icon">🔨</div>
+                    <h3>Força Bruta</h3>
+                    <p>Tentativas automatizadas de tentativa e erro testando bilhões de combinações por segundo até acertar.</p>
+                </article>
+                <article class="info-card">
+                    <div class="card-icon">📖</div>
+                    <h3>Ataques por Dicionário</h3>
+                    <p>Softwares que testam listas de palavras comuns, nomes, termos de dicionário e senhas vazadas anteriormente.</p>
+                </article>
+                <article class="info-card">
+                    <div class="card-icon">🔓</div>
+                    <h3>Vazamento de Dados</h3>
+                    <p>Quando grandes plataformas são invadidas, listas de credenciais são expostas e vendidas na internet.</p>
+                </article>
+                <article class="info-card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Reutilização de Senhas</h3>
+                    <p>Usar a mesma senha no e-mail, banco e redes sociais significa que um único vazamento compromete toda sua vida.</p>
+                </article>
+                <article class="info-card">
+                    <div class="card-icon">🗣️</div>
+                    <h3>Engenharia Social</h3>
+                    <p>Manipulação psicológica para fazer a vítima voluntariamente entregar dados ou senhas fingindo ser um suporte.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="simulador" class="section-padding reveal">
+            <div class="interactive-box">
+                <h2>Simulador de Força de Senha</h2>
+                <p>Teste o nível de segurança de uma senha em tempo real (Nenhum dado é enviado ou salvo!).</p>
+                <div class="form-group">
+                    <input type="password" id="password-input" placeholder="Digite uma senha para testar...">
+                    <button id="toggle-password-view">👁️</button>
+                </div>
+                <div class="strength-bar-container">
+                    <div id="strength-meter"></div>
+                </div>
+                <div id="strength-label">Aguardando senha...</div>
+                <ul id="suggestions-list" class="feedback-list"></ul>
+            </div>
+        </section>
+
+        <section id="gerador" class="section-padding reveal">
+            <div class="interactive-box">
+                <h2>Gerador de Senhas Seguras</h2>
+                <p>Crie senhas criptograficamente fortes com personalização total.</p>
+                <div class="generator-display">
+                    <span id="generated-password">S3nh4_StR0ng!</span>
+                    <button id="btn-copy" class="btn btn-secondary">Copiar</button>
+                </div>
+                <div class="generator-controls">
+                    <div class="control-group">
+                        <label for="length-slider">Comprimento: <span id="length-val">16</span> caracteres</label>
+                        <input type="range" id="length-slider" min="6" max="32" value="16">
+                    </div>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" id="chk-uppercase" checked> Letras Maiúsculas (A-Z)</label>
+                        <label><input type="checkbox" id="chk-lowercase" checked> Letras Minúsculas (a-z)</label>
+                        <label><input type="checkbox" id="chk-numbers" checked> Números (0-9)</label>
+                        <label><input type="checkbox" id="chk-symbols" checked> Símbolos (!@#$%^&*)</label>
+                    </div>
+                    <button id="btn-generate" class="btn btn-primary">Gerar Nova Senha</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="curiosidades" class="section-padding reveal bg-alt">
+            <h2 class="section-title">Estatísticas Impactantes</h2>
+            <div class="grid-container column-3 text-center">
+                <div class="stat-card">
+                    <h3 class="counter" data-target="30000000">0</h3>
+                    <p>Contas atacadas diariamente no mundo.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="counter" data-target="81">0</h3>
+                    <p>% das invasões ocorrem devido a senhas fracas ou roubadas.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="counter" data-target="73">0</h3>
+                    <p>% das pessoas duplicam senhas em múltiplos serviços.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="section-padding reveal">
+            <div class="interactive-box">
+                <h2>Quiz CyberSecurity</h2>
+                <div id="quiz-container">
+                    </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="section-padding reveal">
+            <h2 class="section-title">A Evolução das Senhas</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Anos 80</h3>
+                        <p>Sistemas Unix primitivos usavam senhas simples de texto de até 8 caracteres. O foco era apenas o compartilhamento local.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Anos 90</h3>
+                        <p>A chegada da internet comercial populariza senhas de login para e-mails e fóruns, frequentemente armazenadas sem criptografia.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Anos 2000</h3>
+                        <p>Exigências de complexidade começam a aparecer (maiusculas e números). Ataques automatizados ganham força.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Anos 2010</h3>
+                        <p>Vazamentos massivos de dados forçam a criação da Autenticação em Duas Etapas (2FA) e gerenciadores de senhas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Atualmente</h3>
+                        <p>Migração para o modelo Passwordless (Passkeys, biometria facial/digital) e criptografia de ponta a ponta à prova de força bruta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dicas" class="section-padding reveal bg-alt">
+            <h2 class="section-title">Guia Prático de Proteção</h2>
+            <div class="grid-container column-3">
+                <div class="tip-card">
+                    <div class="tip-num">01</div>
+                    <h3>Use Frases-Senha (Passphrases)</h3>
+                    <p>Combine 4 ou mais palavras aleatórias mas fáceis de lembrar. Ex: "Cavalo-Caneta-Azul-Correndo". Muito longa para computadores quebrarem.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-num">02</div>
+                    <h3>Use um Gerenciador</h3>
+                    <p>Aplicativos dedicados criam, armazenam e preenchem suas senhas criptografadas localmente. Você só precisa lembrar de uma.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-num">03</div>
+                    <h3>Ative o 2FA / MFA</h3>
+                    <p>A autenticação em duas etapas adiciona uma camada extra (código no celular). Mesmo se descobrirem sua senha, não entram.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button id="back-to-top" title="Voltar ao topo">↑</button>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Conscientização Digital. Desenvolvido com foco em segurança cibernética educativa.</p>
+        <p class="footer-msg">Senhas fortes salvam identidades. Proteja-se!</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
